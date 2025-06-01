@@ -1,0 +1,17 @@
+namespace: community
+name: go_collection
+version: 1.0.0
+readme: README.md
+authors:
+  - Sagar Paul
+description: Ansible collection with Go-based modules
+license_file: LICENSE
+tags:
+  - golang
+  - system
+  - utilities
+dependencies: {}
+repository: https://github.com/community/ansible-go-collection
+documentation: https://github.com/community/ansible-go-collection
+homepage: https://github.com/community/ansible-go-collection
+issues: https://github.com/community/ansible-go-collection/issues

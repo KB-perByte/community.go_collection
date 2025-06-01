@@ -1,0 +1,65 @@
+---
+- name: Test Go-based Ansible modules
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  tasks:
+    - name: Test hello_world module with defaults
+      community.go_collection.hello_world:
+      register: result1
+
+    - name: Display result
+      debug:
+        var: result1
+
+    - name: Test hello_world module with custom parameters
+      community.go_collection.hello_world:
+        name: 'Ansible'
+        greeting: 'Greetings'
+        uppercase: true
+      register: result2
+
+    - name: Display custom result
+      debug:
+        var: result2
+
+    - name: Create a directory
+      community.go_collection.file_manager:
+        path: '/tmp/test_dir'
+        state: directory
+      register: dir_result
+
+    - name: Display directory result
+      debug:
+        var: dir_result
+
+    - name: Touch a file
+      community.go_collection.file_manager:
+        path: '/tmp/test_dir/test_file.txt'
+        state: touch
+      register: file_result
+
+    - name: Display file result
+      debug:
+        var: file_result
+
+    - name: Check file exists
+      community.go_collection.file_manager:
+        path: '/tmp/test_dir/test_file.txt'
+        state: file
+      register: check_result
+
+    - name: Display check result
+      debug:
+        var: check_result
+
+    - name: Clean up
+      community.go_collection.file_manager:
+        path: '/tmp/test_dir'
+        state: absent
+      register: cleanup_result
+
+    - name: Display cleanup result
+      debug:
+        var: cleanup_result
